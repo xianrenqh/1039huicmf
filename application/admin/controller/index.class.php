@@ -13,6 +13,9 @@ class index extends common {
 	 *  欢迎页
 	 * */
 	public function public_welcome(){
+        $admin = D('admin');
+        $getinfo = $admin->field('loginip,logintime')->where(['adminid'=>$_SESSION['adminid']])->find();
+        $getinfo['logintime']=date("Y-m-d H:i:s",$getinfo['logintime']);
 	    include $this->admin_tpl('welcome');
     }
 	
