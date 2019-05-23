@@ -1,7 +1,7 @@
 <?php
 /**
  * index.php 文件单一入口
- *我就是测试一下修改
+ *我就是嗯嗯
  */
 
 if(!file_exists(dirname(__FILE__).'/cache/install.lock'))
