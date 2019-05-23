@@ -1,0 +1,148 @@
+<?php include $this->admin_tpl('header');?>
+<body>
+<div class="weadmin-body">
+    <blockquote class="layui-elem-quote">欢迎使用 小灰灰内容管理系统 <span class="f-14">V1.0</span>！</blockquote>
+    <p>上次登录IP：127.0.0.1  上次登录时间：2019-04-28 14:40:40 &nbsp;&nbsp;
+        [ <a data-title="登录日志"  _href="<?php echo U('admin_log/admin_login_log_list');?>" onclick="WeAdminShow('','<?php echo U('admin_log/admin_login_log_list')?>','800','500')" href="javascript:void(0)">登录日志</a> ]
+    </p>
+    <table class="layui-table mg-t30">
+        <?php if(is_file(YZMPHP_PATH.'cache/error_log.php')){?>
+        <tr>
+            <td>安全提示</td>
+            <td>错误日志（/cache/error_log.php），文件大小 <span class="c-red"><?php echo sizecount(filesize(YZMPHP_PATH.'cache/error_log.php'));?></span></td>
+        </tr>
+        <?php } ?>
+    </table>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-lg12">
+            <table class="layui-table">
+                <thead>
+                <tr class="layui-bg-green">
+                    <th colspan="2" scope="col">系统信息</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="30%">WEB服务器</td>
+                    <td><span id="lbServerName"><?php echo $_SERVER['SERVER_SOFTWARE'];?></span></td>
+                </tr>
+                <tr>
+                    <td>PHP版本</td>
+                    <td><?php echo PHP_VERSION;?></td>
+                </tr>
+                <tr>
+                    <td>MySQL版本</td>
+                    <td><?php echo D('admin')->version();?></td>
+                </tr>
+                <tr>
+                    <td>服务器操作系统 </td>
+                    <td><?php echo php_uname('s');?></td>
+                </tr>
+                <tr>
+                    <td>REGISTER_GLOBALS</td>
+                    <td><?php echo ini_get('register_globals') ? '<span style="color:red;">ON</span>' : 'OFF';?></td>
+                </tr>
+                <tr>
+                    <td>MAGIC_QUOTES_GPC</td>
+                    <td><?php echo MAGIC_QUOTES_GPC ? '<span style="color:red;">ON</span>' : 'OFF';?></td>
+                </tr>
+                <tr>
+                    <td>最大上传限制（UPLOAD_MAX_FILESIZE） </td>
+                    <td><?php echo ini_get('file_uploads') ? ini_get('upload_max_filesize') : 'Disabled';?></td>
+                </tr>
+                <tr>
+                    <td>最大执行时间（MAX_EXECUTION_TIME）</td>
+                    <td><?php echo ini_get('max_execution_time').'秒';?></td>
+                </tr>
+                <tr>
+                    <td>服务器时间 </td>
+                    <td><span id="show_date"></span></td>
+                </tr>
+                <tr>
+                    <td>服务器域名 </td>
+                    <td><?php echo $_SERVER['HTTP_HOST'];?></td>
+                </tr>
+                <tr>
+                    <td>服务器端口 </td>
+                    <td><?php echo $_SERVER['SERVER_PORT'];?></td>
+                </tr>
+                <tr>
+                    <td>脚本运行占用最大内存 </td>
+                    <td><?php echo get_cfg_var('memory_limit') ? get_cfg_var('memory_limit') : '---';?></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-lg12">
+            <blockquote class="layui-elem-quote title">发展历程&更新日志（嗯，有点皮~~~）</blockquote>
+            <div class="layui-elem-quote layui-quote-nm history_box magb0">
+                <ul class="layui-timeline">
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe756;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">
+                                <h3 class="layui-inline">HuiCMF管理系统<span class="layui-bg-red">  V1.0  </span>发布　</h3>
+                                <span class="layui-badge-rim">2019-05-08</span>
+                            </div>
+                            <ul>
+                                <li>
+                                    <blockquote class="layui-elem-quote title"># 正式上线使用 -2019-05-06</blockquote>
+                                </li>
+                                <li class="layui-red layedit-tool-help">郑重提示：【代码写的有不规范的地方，请大家多多担待】</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">
+                                <h3 class="layui-inline">HuiCMF V1.0正式搭建开发环境并开始开发</h3>
+                                <span class="layui-badge-rim">2019-04-30</span>
+                            </div>
+                            <ul>
+                                <li class="layui-red"># 开发后台 - 2019-04-30</li>
+                                <li>搭建mvc程序（PHP框框使用YZMPHP V2.0</li>
+                                <li>整合后台UI模板（WeAdmin V1.0后台UI）</li>
+                                <li>开发管理员模块</li>
+                                <li>开发角色管理模块</li>
+                                <li>开发后台登录模块</li>
+                                <li>开发系统信息设置模块</li>
+                                <li>开发数据库管理模块（备份还原）</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">
+                                <h3 class="layui-inline">HuiCMF管理系统正式确认开发</h3>
+                                <span class="layui-badge-rim">2019-04-29</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<?php include $this->admin_tpl('footer');?>
+<script type="text/javascript">
+    var ts = <?php echo round(microtime(true)*1000);?>;
+    function getTime(){
+        var t = new Date(ts);
+        with(t){
+            var _time = ""+getFullYear() + "年" + (getMonth()+1)+"月"+getDate()+"日 " + (getHours()<10 ? "0" :"") + getHours() + ":" + (getMinutes()<10 ? "0" :"") + getMinutes() + ":" + (getSeconds()<10 ? "0" :"") + getSeconds();
+        }
+        document.getElementById("show_date").innerHTML = _time;
+        setTimeout("getTime()", 1000);
+        ts += 1000;
+    }
+    getTime();
+</script>
+</body>
+</html>

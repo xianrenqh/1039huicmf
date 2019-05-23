@@ -1,0 +1,83 @@
+<?php include $this->admin_tpl('header');?>
+<style>
+	.layui-breadcrumb {visibility: visible;}
+</style>
+
+<body>
+<div class="weadmin-nav">
+			<span class="layui-breadcrumb">
+       		 <a href="">首页</a><span lay-separator="">/</span>
+        	<a href="">管理员管理</a><span lay-separator="">/</span>
+            <a><cite>角色管理</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-sm" style="float:right;margin-top: 5px" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#xe9aa;</i></a>
+</div>
+
+<div class="weadmin-body">
+    <div class="weadmin-block">
+        <button class="layui-btn" onclick="WeAdminShow('添加角色','<?php echo U('role/add')?>','800','500')"><i class="layui-icon"></i>添加</button>
+        <span class="fr" style="line-height:40px">共有数据：<?php echo $total;?> 条</span>
+    </div>
+    <table id="role_list" lay-filter="role_list"></table>
+    <script type="text/html" id="disabled">
+        {{#  if(d.disabled ==0){ }}
+        <span class="layui-btn layui-btn-sm" onclick="change_s({{d.roleid}})">已启用</span>
+        {{#  } else { }}
+        <span class="layui-btn layui-btn-danger layui-btn-sm" onclick="change_s({{d.roleid}})">已禁用</span>
+        {{#  } }}
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-sm" lay-event="quanxian">权限管理</a>
+        <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+    </script>
+
+</div>
+
+</body>
+
+<?php include $this->admin_tpl('footer');?>
+
+<script type="text/javascript">
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#role_list'
+            ,page: false
+            ,where:{do:1}
+            ,method: 'post'
+            ,url: '<?php echo U('init');?>' //数据接口
+            ,parseData: function(res){
+                console.log(res)
+            }
+            ,cols: [[ //表头
+                {field: 'roleid', title: 'ID', width:100, sort: true, fixed: 'left',align:'center'}
+                ,{field: 'rolename', title: '角色名'}
+                ,{field: 'description', title: '描述'}
+                ,{field: 'disabled', title: '状态', sort: true,templet: '#disabled',align:'center'}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
+            ]]
+        });
+        //监听行工具事件
+        table.on('tool(role_list)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    layer.msg("不好意思，删除不能使用。。<br>你想使用的话自己开发去！！！");
+                });
+            } else if(obj.event === 'edit'){
+                WeAdminShow("编辑","<?php echo U('edit')?>/roleid/"+data.roleid,'800','500');
+            }else if(obj.event ==='quanxian'){
+                WeAdminShow("权限管理","<?php echo U('role_priv')?>/roleid/"+data.roleid,'800');
+            }
+        });
+    });
+function change_s(roleid) {
+    $.post('','',function (res) {
+        
+    })
+}
+</script>

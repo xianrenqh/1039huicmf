@@ -1,0 +1,12 @@
+
+<script type="text/javascript" src="<?php echo STATIC_URL;?>lib/jquery/jquery.2.2.4.min.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_URL;?>lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.extend({
+      admin: '<?php echo STATIC_URL;?>js/admin'
+    });
+    //使用拓展模块
+    layui.use('admin', function(){
+      var admin = layui.admin;
+    });
+</script>

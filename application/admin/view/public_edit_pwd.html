@@ -1,0 +1,43 @@
+<?php include $this->admin_tpl('header');?>
+<style>
+    .layui-form-label{width: 90px;}
+    .layui-input-block{margin-left: 120px;}
+</style>
+<body>
+<div class="weadmin-body">
+    <form method="post" class="layui-form">
+        <div class="layui-form-item">
+            <label for="adminname" class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" id="adminname" name="adminname"  value="<?php echo $data['adminname'];?>" class="layui-input readonly-bg" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="old_password" class="layui-form-label">旧密码</label>
+            <div class="layui-input-block">
+                <input type="password" id="old_password" name="old_password"  value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="password" class="layui-form-label">新密码</label>
+            <div class="layui-input-block">
+                <input type="password" id="password" name="password"  value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="password2" class="layui-form-label">确认密码</label>
+            <div class="layui-input-block">
+                <input type="password" id="password2" name="password2"  value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label  class="layui-form-label">
+            </label>
+            <button class="layui-btn" name="dosubmit"  lay-submit="">确定</button>
+        </div>
+    </form>
+</div>
+
+<?php include $this->admin_tpl('footer');?>
+</body>
+</html>
