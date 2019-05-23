@@ -1,7 +1,7 @@
 <?php
 /**
  * index.php 文件单一入口
- *201905
+ *20190523
  */
 
 if(!file_exists(dirname(__FILE__).'/cache/install.lock'))
