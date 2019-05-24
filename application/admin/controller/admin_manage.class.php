@@ -73,6 +73,9 @@ class admin_manage extends  common {
             }
             $r = $admin_role->field('rolename')->where(array('roleid' => $_POST['roleid']))->find();
             //$_POST['rolename'] = $r['rolename'];
+            if($_POST['adminid']==1&&$_POST['status']==0){
+                return_json(['message'=>'id为1的系统管理员无法被“禁用”！']);exit;
+            }
             $update = $DB_admin->update($_POST, array('adminid' => $_POST['adminid']));
             if($update){
                 return_json(array('status'=>1,'message'=>L('operation_success')));
