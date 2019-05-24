@@ -24,11 +24,14 @@ class index extends common {
      */
     public function login() {
         if(isset($_POST['dosubmit'])) {
-            if(empty($_SESSION['code']) || strtolower($_POST['code'])!=$_SESSION['code']){
+            if(get_config('login_code')==1){
+                //判断是否启用验证码
+                if(empty($_SESSION['code']) || strtolower($_POST['code'])!=$_SESSION['code']){
+                    $_SESSION['code'] = '';
+                    showmsg(L('code_error'), '', 1);
+                }
                 $_SESSION['code'] = '';
-                showmsg(L('code_error'), '', 1);
             }
-            $_SESSION['code'] = '';
             if(!is_username($_POST['username'])) showmsg(L('user_name_format_error'));
             if(!is_password($_POST['password'])) showmsg(L('password_format_error'));
             M('admin')->check_admin($_POST['username'], password($_POST['password']));
