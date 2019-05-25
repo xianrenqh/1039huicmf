@@ -497,6 +497,16 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 	exports('admin', {});
 });
 
+//删除多条记录
+function hui_dels(name){
+    if ($("input[name='"+name+"[]']:checked").length<1){
+        layer.alert('请勾选信息！');
+        return false;
+    }
+    layer.confirm('确认要删除吗？',function(index){
+        document.getElementById('myform').submit();
+    });
+}
 
 //上传附件
 function hui_upload_att(url){
