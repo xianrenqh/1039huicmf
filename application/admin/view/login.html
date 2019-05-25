@@ -10,7 +10,10 @@
 	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="<?php echo STATIC_URL;?>css/font.css">
 	<link rel="stylesheet" href="<?php echo STATIC_URL;?>css/weadmin.css">
+	<link rel="stylesheet" href="<?php echo STATIC_URL;?>css/captcha.css">
 	<script src="<?php echo STATIC_URL;?>lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo STATIC_URL;?>lib/jquery/jquery.2.2.4.min.js"></script>
+	<script src="<?php echo STATIC_URL;?>js/clicaptcha.js"></script>
 
 </head>
 <body class="login-bg">
@@ -18,19 +21,40 @@
 <div class="login">
 	<div class="message">小灰灰内容管理系统-后台管理系统</div>
 	<div id="darkbannerwrap"></div>
-	<form method="post" class="layui-form" >
+	<form method="post" class="layui-form"  id="form" action="<?php echo U('admin/index/login');?>">
 		<input type="text" name="username" class="layui-input" placeholder="用户名" required="required"  autofocus="autofocus">
 		<hr class="hr15">
         <input type="password" name="password" class="layui-input" placeholder="密码" required="required">
 		<?php if(get_config('login_code')==1){ ?>
 		<hr class="hr15">
-		<img src="<?php echo U('api/index/code');?>" border="0" class="verifyimg" onclick="this.src=this.src+'?'" style="float:right;height: 45px;"/>
-		<input type="text" name="code" class="login_input verify_input" required="required" placeholder="验证码" style="float:left; width: 50%">
-		<?php } ?>
+        <img src="<?php echo U('api/index/code');?>" border="0" class="verifyimg" onclick="this.src=this.src+'?'" style="float:right;height: 45px;"/>
+        <input type="text" name="code" class="login_input verify_input" required="required" placeholder="验证码" style="float:left; width: 50%">
 		<hr class="hr15">
-        <input class="loginin" type="submit" name="dosubmit" style="width:100%;"  value="登　录" />
+		<input class="loginin" type="submit" name="dosubmit" style="width:100%;"  value="登　录" />
+        <?php }elseif(get_config('login_code')==2){ ?>
+		<hr class="hr15">
+		<input type="hidden" name="dosubmit" value="1">
+		<input class="loginin" type="button" id="sub" style="width:100%;" value="登　录">
+		<?php }else{ ?>
+		<hr class="hr15">
+		<input class="loginin"  type="submit" name="dosubmit" style="width:100%;"  value="登　录" />
+		<?php } ?>
+
 		<hr class="hr20" >
+		<input type="hidden" id="clicaptcha-submit-info" name="clicaptcha-submit-info">
 	</form>
 </div>
 </body>
 </html>
+<script>
+    $(function(){
+        $('#sub').click(function(){
+            $('#clicaptcha-submit-info').clicaptcha({
+                src: "<?php echo U('api/index/code_captcha');?>",
+                callback: function(){
+                    $('#form').submit();
+                }
+            });
+        });
+    });
+</script>

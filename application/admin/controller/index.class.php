@@ -18,7 +18,7 @@ class index extends common {
         $getinfo['logintime']=date("Y-m-d H:i:s",$getinfo['logintime']);
 	    include $this->admin_tpl('welcome');
     }
-	
+    
     /**
      * 管理员登录
      */

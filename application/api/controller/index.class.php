@@ -27,5 +27,18 @@ class index{
         $_SESSION['code'] = $code->get_code();
     }
     
+    /*
+ * 点击验证码
+*/
+    public function code_captcha(){
+        session_start();
+        $clicaptcha = yzm_base::load_sys_class('code_clicaptcha');
+        if($_POST['do'] == 'check'){
+            $res= $clicaptcha->check($_POST['info'], false) ? 1 : 0;
+            return_json(['res'=>$res]);
+        }else{
+            $clicaptcha->creat();
+        }
+    }
     
 }
