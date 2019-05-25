@@ -28,8 +28,10 @@ YZMPHP框架是由袁志蒙独自研发的一款轻量级开源PHP框架,该框�
 2. php版本要求：>=5.4
 3. mysql5
 
-#### 参与贡献
-1. 小灰灰
+#### 特别鸣谢
+感谢以下的项目,排名不分先后
+YzmPHP：http://www.yzmphp.com
+layui：http://www.layui.com
 
 
 
