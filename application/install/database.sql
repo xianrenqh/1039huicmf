@@ -156,7 +156,7 @@ INSERT INTO `hui_config` VALUES (13, 'mail_user', 4, 'SMTP服务器的用户帐�
 INSERT INTO `hui_config` VALUES (14, 'mail_pass', 4, 'SMTP服务器的用户密码', '', '', '', 1);
 INSERT INTO `hui_config` VALUES (15, 'mail_inbox', 4, '收件邮箱地址', '', '', '', 1);
 INSERT INTO `hui_config` VALUES (16, 'mail_auth', 4, 'AUTH LOGIN验证', '1', '', '', 1);
-INSERT INTO `hui_config` VALUES (17, 'login_code', 3, '是否启用后台登录验证码', '1')
+INSERT INTO `hui_config` VALUES (17, 'login_code', 3, '是否启用后台登录验证码','1', '', '', 1)
 
 -- ----------------------------
 -- Table structure for hui_menu
