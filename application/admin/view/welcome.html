@@ -3,7 +3,7 @@
 <div class="weadmin-body">
     <blockquote class="layui-elem-quote">欢迎使用 小灰灰内容管理系统 <span class="f-14">V1.0</span>！</blockquote>
     <p>上次登录IP：<?php echo $getinfo['loginip'];?> 上次登录时间：<?php echo $getinfo['logintime'];?>
-        [ <a data-title="登录日志"  _href="<?php echo U('admin_log/admin_login_log_list');?>" onclick="WeAdminShow('','<?php echo U('admin_log/admin_login_log_list')?>','800','500')" href="javascript:void(0)">登录日志</a> ]
+        [ <a data-title="登录日志"   onclick="WeAdminShow('后台登录日志','<?php echo U('admin_log/admin_login_log_list')?>','1000','680')" href="javascript:void(0)">登录日志</a> ]
     </p>
     <table class="layui-table mg-t30">
         <?php if(is_file(YZMPHP_PATH.'cache/error_log.php')){?>
