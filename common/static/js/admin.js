@@ -496,3 +496,45 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 
 	exports('admin', {});
 });
+
+
+//上传附件
+function hui_upload_att(url){
+    layer.open({
+        type: 2,
+        title: '上传附件',
+        area: ['500px', '430px'],
+        content: url
+    });
+}
+//图像裁剪
+function hui_img_cropper(cid, url){
+    var str = $('#' + cid).val();
+    if(str == ''){
+        layer.msg('请先上传图片！');
+        return false;
+    }
+    if(url.indexOf('?') != -1) {
+        url = url+'&f=' + window.btoa(unescape(encodeURIComponent(str))) + '&cid='  + cid;
+    } else {
+        url = url+'?f=' + window.btoa(unescape(encodeURIComponent(str))) + '&cid='  + cid;
+    }
+    layer.open({
+        type: 2,
+        title: '图像裁剪',
+        area: ['750px', '510px'],
+        content: url
+    });
+}
+//图片预览
+function hui_img_preview(id, src){
+    if(src == '') return;
+    layer.tips('<img src="'+htmlspecialchars(src)+'" height="100">', '#'+id, {
+        tips: [1, '#fff']
+    });
+}
+
+//删除多文件上传
+function remove_li(obj){
+    $(obj).parent().remove();
+}

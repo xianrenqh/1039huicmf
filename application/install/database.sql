@@ -213,5 +213,8 @@ INSERT INTO `hui_menu` VALUES (30, '备份文件删除', 25, 'admin', 'database'
 INSERT INTO `hui_menu` VALUES (31, '立即备份', 24, 'admin', 'database', 'export_list', '', 0, 0);
 INSERT INTO `hui_menu` VALUES (32, ' 后台操作日志', 6, 'admin', 'admin_log', 'init', '', 11, 1);
 INSERT INTO `hui_menu` VALUES (33, '后台登录日志', 6, 'admin', 'admin_log', 'admin_login_log_list', '', 12, 1);
-
+INSERT INTO `hui_menu` VALUES (34, '自定义配置', 6, 'admin', 'system_manage', 'user_config_list', '', 2, 1);
+INSERT INTO `hui_menu` VALUES (35, '添加配置', 34, 'admin', 'system_manage', 'user_config_add', '', 1, 0);
+INSERT INTO `hui_menu` VALUES (36, '编辑配置', 34, 'admin', 'system_manage', 'user_config_edit', '', 2, 0);
+INSERT INTO `hui_menu` VALUES (37, '删除配置', 34, 'admin', 'system_manage', 'user_config_del', '', 3, 0);
 SET FOREIGN_KEY_CHECKS = 1;
