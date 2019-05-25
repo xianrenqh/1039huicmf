@@ -216,5 +216,6 @@ INSERT INTO `hui_menu` VALUES (33, '后台登录日志', 6, 'admin', 'admin_log'
 INSERT INTO `hui_menu` VALUES (34, '自定义配置', 6, 'admin', 'system_manage', 'user_config_list', '', 2, 1);
 INSERT INTO `hui_menu` VALUES (35, '添加配置', 34, 'admin', 'system_manage', 'user_config_add', '', 1, 0);
 INSERT INTO `hui_menu` VALUES (36, '编辑配置', 34, 'admin', 'system_manage', 'user_config_edit', '', 2, 0);
-INSERT INTO `hui_menu` VALUES (37, '删除配置', 34, 'admin', 'system_manage', 'user_config_del', '', 3, 0);
+INSERT INTO `hui_menu` VALUES (37, '批量删除配置', 34, 'admin', 'system_manage', 'user_config_del', '', 3, 0);
+INSERT INTO `hui_menu` VALUES (37, '单条删除配置', 34, 'admin', 'system_manage', 'user_config_del_one', '', 3, 0);
 SET FOREIGN_KEY_CHECKS = 1;
