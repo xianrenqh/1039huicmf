@@ -25,7 +25,7 @@ return array(
     'cookie_domain'      => '',           //Cookie 作用域
     'cookie_path'        => '/',          //Cookie 作用路径
     'cookie_ttl'         => 0,            //Cookie 生命周期，0 表示随浏览器进程
-    'cookie_pre'         => 'yzmphp_',    //Cookie 前缀，同一域名下安装多套系统时，请修改Cookie前缀
+    'cookie_pre'         => 'huicmf_',    //Cookie 前缀，同一域名下安装多套系统时，请修改Cookie前缀
     'cookie_secure'      => false,        //是否通过安全的 HTTPS 连接来传输 cookie
     
     //缓存配置
