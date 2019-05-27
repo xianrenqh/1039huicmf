@@ -160,7 +160,7 @@ class db_mysql{
 			$this->key['where'] = $str;
 			return $this;
 		}else{
-			$this->key['where'] = str_replace('yzmcms_', $this->config['db_prefix'], $arr);
+			$this->key['where'] = str_replace('hui_', $this->config['db_prefix'], $arr);
 			return $this;
 		}
 	}
@@ -212,7 +212,7 @@ class db_mysql{
 	 * 执行删除记录操作
 	 * @param $where 		参数为数组，删除数据条件,不充许为空。
 	 * @param $many 		是否删除多个，多用在批量删除，取的主键在某个范围内，例如 $admin->delete(array(3,4,5), true);
-	 *                      结果为： DELETE FROM `yzmcms_admin` WHERE id IN (3,4,5);
+	 *                      结果为： DELETE FROM `hui_admin` WHERE id IN (3,4,5);
 	 *
 	 * @return int          返回影响行数
 	 */
@@ -272,7 +272,7 @@ class db_mysql{
 	 */	
 	public function select(){
 		$rs = array();		
-		$field = isset($this->key['field']) ? str_replace('yzmcms_', $this->config['db_prefix'], $this->key['field']) : ' * ';
+		$field = isset($this->key['field']) ? str_replace('hui_', $this->config['db_prefix'], $this->key['field']) : ' * ';
 		$join = isset($this->key['join']) ? ' '.implode(' ', $this->key['join']) : '';
 		$where = isset($this->key['where']) ? ' WHERE '.$this->key['where'] : '';
 		$group = isset($this->key['group']) ? ' GROUP BY '.$this->key['group'] : '';
@@ -294,7 +294,7 @@ class db_mysql{
 	 * @return array
 	 */	
 	public function find(){
-		$field = isset($this->key['field']) ? str_replace('yzmcms_', $this->config['db_prefix'], $this->key['field']) : ' * ';
+		$field = isset($this->key['field']) ? str_replace('hui_', $this->config['db_prefix'], $this->key['field']) : ' * ';
 		$join = isset($this->key['join']) ? ' '.implode(' ', $this->key['join']) : '';
 		$where = isset($this->key['where']) ? ' WHERE '.$this->key['where'] : '';
 		$group = isset($this->key['group']) ? ' GROUP BY '.$this->key['group'] : '';
@@ -314,7 +314,7 @@ class db_mysql{
 	 * @return string
 	 */	
 	public function one(){
-		$field = isset($this->key['field']) ? str_replace('yzmcms_', $this->config['db_prefix'], $this->key['field']) : ' * ';
+		$field = isset($this->key['field']) ? str_replace('hui_', $this->config['db_prefix'], $this->key['field']) : ' * ';
 		$join = isset($this->key['join']) ? ' '.implode(' ', $this->key['join']) : '';
 		$where = isset($this->key['where']) ? ' WHERE '.$this->key['where'] : '';
 		$group = isset($this->key['group']) ? ' GROUP BY '.$this->key['group'] : '';
@@ -331,12 +331,12 @@ class db_mysql{
 	
 	/**
 	 * 链接查询
-	 * @param $join 	string SQL语句，如yzmcms_admin ON yzmcms_admintype.id=yzmcms_admin.id
+	 * @param $join 	string SQL语句，如hui_admin ON hui_admintype.id=hui_admin.id
 	 * @param $type 	可选参数,默认是inner
 	 * @return object
 	 */	
 	public function join($join, $type = 'INNER'){
-		$join = str_replace('yzmcms_', $this->config['db_prefix'], $join);    
+		$join = str_replace('hui_', $this->config['db_prefix'], $join);    
         $this->key['join'][] = stripos($join,'JOIN') !== false ? $join : $type.' JOIN '.$join;
 	    return $this;
 	}		
@@ -362,7 +362,7 @@ class db_mysql{
 	 * @return （mysql_query返回值）
 	 */		
 	public function query($sql = ''){
-		 $sql = str_replace('yzmcms_', $this->config['db_prefix'], $sql); 
+		 $sql = str_replace('hui_', $this->config['db_prefix'], $sql); 
          return $this->execute($sql);	  
 	}
 
