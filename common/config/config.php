@@ -65,6 +65,9 @@ return array(
     'watermark_enable'   => '1',          //是否开启图片水印
     'watermark_name'     => 'mark.png',   //水印名称
     'watermark_position' => '9',          //水印位置
-
+    
+    //其他设置
+    'sql_execute'        => false,        //是否允许在线执行SQL命令
+    
 );
 ?>
