@@ -218,4 +218,6 @@ INSERT INTO `hui_menu` VALUES (35, '添加配置', 34, 'admin', 'system_manage',
 INSERT INTO `hui_menu` VALUES (36, '编辑配置', 34, 'admin', 'system_manage', 'user_config_edit', '', 2, 0);
 INSERT INTO `hui_menu` VALUES (37, '批量删除配置', 34, 'admin', 'system_manage', 'user_config_del', '', 3, 0);
 INSERT INTO `hui_menu` VALUES (37, '单条删除配置', 34, 'admin', 'system_manage', 'user_config_del_one', '', 3, 0);
+INSERT INTO `hui_menu` VALUES (38, 'SQL命令行', 6, 'admin', 'sql', 'init', '', 4, 1);
+INSERT INTO `hui_menu` VALUES (39, '提交命令行', 38, 'admin', 'sql', 'do_sql', '', 1, 0);
 SET FOREIGN_KEY_CHECKS = 1;

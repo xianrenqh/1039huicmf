@@ -1,0 +1,126 @@
+<?php include $this->admin_tpl('header');?>
+<style>
+    .layui-breadcrumb {visibility: visible;}
+    .layui-input-block{margin-left: 0;}
+    #message {font-weight: bold;font-size: 18px;color:#f00;}
+</style>
+<body>
+<div class="weadmin-nav">
+    <span class="layui-breadcrumb">
+         <a href="">首页</a><span lay-separator="">/</span>
+        <a href="">系统管理</a><span lay-separator="">/</span>
+        <a><cite>SQL命令行</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-sm" style="float:right;margin-top: 5px" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon">&#xe9aa;</i></a>
+</div>
+<div class="weadmin-body">
+    <blockquote class="layui-elem-quote ">
+        注意：<b style="color:#FF5722">执行SQL将直接操作数据库，请谨慎使用</b>（表前缀可用“hui_”代替）。
+    </blockquote>
+    <form class="layui-form" action="javascript:;" onsubmit="return check_all()">
+        <div class="layui-form-item">
+            <div class="layui-l-block">
+                <textarea name="sqlstr" id="sqlstr" placeholder="请输入SQL，多行请用 ; 间隔" class="layui-textarea"><?php if(isset($sqlstr)) echo $sqlstr;?></textarea>
+                <input type="hidden" name="action" value="many" id="action">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" onclick="setacton('single')" >执行单条SQL</button>
+                <button class="layui-btn " onclick="setacton('many')">执行多条SQL</button>
+            </div>
+        </div>
+    </form>
+    <div id="message"></div>
+
+    <table class="layui-table"  id="return_table">
+        <thead><tr></tr></thead>
+        <tbody></tbody>
+    </table>
+</div>
+<?php include $this->admin_tpl('footer');?>
+<script>
+    function setacton(action) {
+        $("#action").val(action);
+    }
+    function check_all() {
+        var sqlstr =$("#sqlstr").val();
+        if(sqlstr==""){
+            layer.msg("SQL不能为空！");
+            return false;
+        }
+        var reg = /^delete/i;
+        var reg2 = /^(.*)where(.*)/i;
+        if(reg.test(sqlstr) && !reg2.test(sqlstr) ){
+            layer.confirm('检测到delete语句没有加where条件，是否继续？',function(index){
+                dosub();
+            });
+            return false;
+        }
+        dosub();
+    }
+    function dosub() {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo U('do_sql');?>',
+            data: {
+                sqlstr:$("#sqlstr").val(),
+                action:$("#action").val(),
+            },
+            dataType: "json",
+            success: function (res) {
+                console.log(res.data.data_key);
+                if(res.status==200){
+                    layer.msg(res.message, {
+                        icon: 1,
+                        time: 2000
+                    });
+                    $("#return_table thead tr").html(res.data.data_key);
+                    $("#return_table tbody").html(res.data.data_row);
+                }else{
+                    $("#message").html(res.message);
+                    layer.msg(res.message, {
+                        icon: 2,
+                        time: 2000
+                    });
+                }
+               /* if(res.status == 200){
+                    layer.msg(res.message, {
+                        icon: 1,
+                        time: 2000
+                    }, function(){
+                        console.log(res.data[0]);
+                        var jsonObj = res.data[0];
+                        for(var i=0 ;i<1 ; i++){
+                            var obj = res.data[i];
+                           // console.log(obj);
+                            for(var item in obj){
+                                console.log (item);
+                                $("#return_table thead th").html("<td>"+item+"</td>");
+                               // console.log (obj[item]);        //值
+                            }
+                        }
+                       /!* for(var itiem in res.data){
+                            var key =res.data[item];
+                            for (var key1 in key){
+                                //console.log(jsonObj.key);
+                            }
+                        }*!/
+                        /!*$(res.data).each(function (i,v) {
+                            console.log(res.data[i]);
+                            console.log(v);
+                        })*!/
+                        /!*$("#return_table").css("display","block");
+                        $("#return_table thead th").html(res);*!/
+                        //parent.location.reload();
+                    });
+                }else{
+                    layer.msg(msg.message);
+                }*/
+            }
+        });
+        return false;
+    }
+</script>
+</body>
+</html>
