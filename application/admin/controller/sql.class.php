@@ -22,7 +22,7 @@ class sql extends common{
     public function do_sql(){
         if(isset($_POST['sqlstr'])){
             if(!C('sql_execute')) {
-                $res = ['status'=>201,'message'=>'根据系统配置，不允许在线执行SQL命令！'];
+                return_json(['status'=>201,'message'=>'根据系统配置，不允许在线执行SQL命令！']);
             }else{
                 $sqlstr = MAGIC_QUOTES_GPC ? stripslashes($_POST['sqlstr']) : $_POST['sqlstr'];
                 $sqlstr = rtrim(trim($sqlstr), ';');
