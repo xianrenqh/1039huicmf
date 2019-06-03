@@ -44,7 +44,7 @@ class system_manage extends common {
             }
             set_config($arr);
             delcache('configs');
-            showmsg(L('operation_success'), '', 1);
+            return_json(['message'=>"保存成功",'icon'=>2]);
         }
     }
     
