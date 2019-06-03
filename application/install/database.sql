@@ -157,6 +157,10 @@ INSERT INTO `hui_config` VALUES (14, 'mail_pass', 4, 'SMTP服务器的用户密�
 INSERT INTO `hui_config` VALUES (15, 'mail_inbox', 4, '收件邮箱地址', '', '', '', 1);
 INSERT INTO `hui_config` VALUES (16, 'mail_auth', 4, 'AUTH LOGIN验证', '1', '', '', 1);
 INSERT INTO `hui_config` VALUES (17, 'login_code', 3, '后台登录验证码','1', '', '', 1);
+INSERT INTO `hui_config` VALUES (18,'upload_maxsize', 2, '允许上传附件大小','2048', '', '', 1);
+INSERT INTO `hui_config` VALUES (19,'watermark_enable', 2, '是否开启图片水印','1', '', '', 1);
+INSERT INTO `hui_config` VALUES (20,'watermark_name', 2, '水印图片名称','mark.png', '', '', 1);
+INSERT INTO `hui_config` VALUES (21,'watermark_position', 2, '水印的位置','9', '', '', 1);
 
 -- ----------------------------
 -- Table structure for hui_menu

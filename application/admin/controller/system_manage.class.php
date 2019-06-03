@@ -24,18 +24,27 @@ class system_manage extends common {
      * 保存配置信息
      */
     public function save(){
+        yzm_base::load_common('function/function.php', 'admin');
         if(isset($_POST['dosubmit'])){
             delcache('configs');
             unset($_POST['dosubmit']);
             unset($_POST['mail_to']);
+            $arr = [];
             $Config = D('config');
             foreach($_POST as $key => $value){
-                if($key!='site_code'){
-                    $value = htmlspecialchars($value);
+                if(in_array($key, array('watermark_enable','watermark_name','watermark_position'))) {
+                    $value = safe_replace(trim($value));
+                    $arr[$key] = $value;
+                } else{
+                    if($key!='site_code'){
+                        $value = htmlspecialchars($value);
+                    }
                 }
                 $Config->update(['value'=>$value],['name'=>$key]);
             }
-            return_json(['message'=>"保存成功",'icon'=>2]);
+            set_config($arr);
+            delcache('configs');
+            showmsg(L('operation_success'), '', 1);
         }
     }
     

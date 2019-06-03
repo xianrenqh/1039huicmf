@@ -6,6 +6,22 @@
  * Other:
  */
 
+/**
+ * 设置config文件
+ * @param $config 配置信息
+ */
+function set_config($config) {
+    $configfile = YZMPHP_PATH.'common'.DIRECTORY_SEPARATOR.'config/config.php';
+    if(!is_writable($configfile)) showmsg('Please chmod '.$configfile.' to 0777 !', 'stop');
+    $pattern = $replacement = array();
+    foreach($config as $k=>$v) {
+        $pattern[$k] = "/'".$k."'\s*=>\s*([']?)[^']*([']?)(\s*),/is";
+        $replacement[$k] = "'".$k."' => \${1}".$v."\${2}\${3},";
+    }
+    $str = file_get_contents($configfile);
+    $str = preg_replace($pattern, $replacement, $str);
+    return file_put_contents($configfile, $str, LOCK_EX);
+}
 
 /**
  * 显示后台菜单

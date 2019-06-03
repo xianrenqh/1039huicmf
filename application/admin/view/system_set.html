@@ -26,7 +26,7 @@
                 <li class="layui-this">基本设置</li>
                 <li>安全设置</li>
                 <li>邮件设置</li>
-                <li>附加设置</li>
+                <li>附件设置</li>
             </ul>
             <div class="layui-tab-content" style="margin-top: 20px;">
                 <div class="layui-tab-item layui-show">
@@ -147,7 +147,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-tab-item">暂无</div>
+                <div class="layui-tab-item">
+                    <div class="layui-form-item " >
+                        <label for="mail_port" class="layui-form-label">允许上传附件大小（KB）：</label>
+                        <div class="layui-input-inline" >
+                            <input type="text" id="upload_maxsize" name="upload_maxsize" value="<?php echo $data['upload_maxsize']?>"  autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline" style="width: 50%" >[最大限制不能超过服务器“upload_max_filesize”配置]</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label  class="layui-form-label">是否开启图片水印：</label>
+                        <div class="layui-input-inline">
+                            <input type="radio" name="watermark_enable" value="1" title="开启" <?php echo $data['watermark_enable']==1?"checked":"" ?>>
+                            <input type="radio" name="watermark_enable" value="0" title="关闭" <?php echo $data['watermark_enable']==0?"checked":"" ?>>
+                        </div>
+                    </div>
+                    <div class="layui-form-item " >
+                        <label for="mail_port" class="layui-form-label">水印图片名称：</label>
+                        <div class="layui-input-inline" >
+                            <input type="text" id="watermark_name" name="watermark_name" value="<?php echo $data['watermark_name']?>"  autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline" style="width: 50%" > [水印存放路径:/common/data/water]</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label  class="layui-form-label">水印的位置：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="watermark_position" value="0" title="随机" <?php echo $data['watermark_position']==0?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="1" title="顶部居左" <?php echo $data['watermark_position']==1?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="2" title="顶部居中" <?php echo $data['watermark_position']==2?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="3" title="顶部居右" <?php echo $data['watermark_position']==3?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="4" title="中部居左" <?php echo $data['watermark_position']==4?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="5" title="中部居中" <?php echo $data['watermark_position']==5?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="6" title="中部居右" <?php echo $data['watermark_position']==6?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="7" title="顶部居左" <?php echo $data['watermark_position']==7?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="8" title="底部居中" <?php echo $data['watermark_position']==8?"checked":"" ?>>
+                            <input type="radio" name="watermark_position" value="9" title="底部居右" <?php echo $data['watermark_position']==9?"checked":"" ?>>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="layui-form-item " >
                 <label class="layui-form-label"></label>
