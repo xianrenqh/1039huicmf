@@ -188,7 +188,7 @@ CREATE TABLE `hui_menu`  (
 INSERT INTO `hui_menu` VALUES (1, '内容管理', 0, '', '', '', 'icon-read', 1, 1);
 INSERT INTO `hui_menu` VALUES (2, '管理员管理', 0, '', '', '', 'icon-profile', 2, 1);
 INSERT INTO `hui_menu` VALUES (3, '会员管理', 0, '', '', '', 'icon-friend', 3, 0);
-INSERT INTO `hui_menu` VALUES (4, '模块管理', 0, '', '', '', 'icon-apps', 4, 0);
+INSERT INTO `hui_menu` VALUES (4, '模块管理', 0, '', '', '', 'icon-apps', 4, 1);
 INSERT INTO `hui_menu` VALUES (5, '个人信息', 0, '', '', '', 'icon-album', 5, 1);
 INSERT INTO `hui_menu` VALUES (6, '系统管理', 0, '', '', '', ' icon-settings', 6, 1);
 INSERT INTO `hui_menu` VALUES (7, '数据管理', 0, '', '', '', 'icon-lightauto', 7, 1);
@@ -224,4 +224,6 @@ INSERT INTO `hui_menu` VALUES (37, '批量删除配置', 34, 'admin', 'system_ma
 INSERT INTO `hui_menu` VALUES (37, '单条删除配置', 34, 'admin', 'system_manage', 'user_config_del_one', '', 3, 0);
 INSERT INTO `hui_menu` VALUES (38, 'SQL命令行', 6, 'admin', 'sql', 'init', '', 4, 1);
 INSERT INTO `hui_menu` VALUES (39, '提交命令行', 38, 'admin', 'sql', 'do_sql', '', 1, 0);
+INSERT INTO `hui_menu` VALUES (40, '数据库内容替换', 4, 'datareplace', 'index', 'init', '', 51, 1);
+INSERT INTO `hui_menu` VALUES (41, '执行替换', 40, 'datareplace', 'index', 'dosql', '', 1, 0);
 SET FOREIGN_KEY_CHECKS = 1;
