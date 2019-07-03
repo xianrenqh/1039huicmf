@@ -162,6 +162,36 @@ INSERT INTO `hui_config` VALUES (19,'watermark_enable', 2, '是否开启图片�
 INSERT INTO `hui_config` VALUES (20,'watermark_name', 2, '水印图片名称','mark.png', '', '', 1);
 INSERT INTO `hui_config` VALUES (21,'watermark_position', 2, '水印的位置','9', '', '', 1);
 
+
+
+-- ----------------------------
+-- Table structure for hui_module
+-- ----------------------------
+DROP TABLE IF EXISTS `hui_module`;
+CREATE TABLE `hui_module`  (
+  `module` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `iscore` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `version` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `setting` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `listorder` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `installdate` date NOT NULL DEFAULT '2019-01-01',
+  `updatedate` date NOT NULL DEFAULT '2019-01-01',
+  PRIMARY KEY (`module`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of hui_module
+-- ----------------------------
+INSERT INTO `hui_module` VALUES ('admin', '后台模块', 1, '1.0', '后台模块', '', 0, 0, '2019-01-27', '2019-01-27');
+INSERT INTO `hui_module` VALUES ('index', '前台模块', 1, '1.0', '前台模块', '', 0, 0, '2019-01-27', '2019-01-27');
+INSERT INTO `hui_module` VALUES ('api', '接口模块', 1, '1.0', '为整个系统提供接口', '', 0, 0, '2019-01-27', '2019-01-27');
+INSERT INTO `hui_module` VALUES ('install', '安装模块', 1, '1.0', 'CMS安装模块', '', 0, 0, '2019-01-27', '2019-01-27');
+INSERT INTO `hui_module` VALUES ('datareplace', '数据库内容批量替换', 0, '1.0', '数据库内容批量替换', '', 0, 0, '2019-06-29', '2019-06-08');
+
+
 -- ----------------------------
 -- Table structure for hui_menu
 -- ----------------------------
@@ -224,6 +254,9 @@ INSERT INTO `hui_menu` VALUES (37, '批量删除配置', 34, 'admin', 'system_ma
 INSERT INTO `hui_menu` VALUES (37, '单条删除配置', 34, 'admin', 'system_manage', 'user_config_del_one', '', 3, 0);
 INSERT INTO `hui_menu` VALUES (38, 'SQL命令行', 6, 'admin', 'sql', 'init', '', 4, 1);
 INSERT INTO `hui_menu` VALUES (39, '提交命令行', 38, 'admin', 'sql', 'do_sql', '', 1, 0);
-INSERT INTO `hui_menu` VALUES (40, '数据库内容替换', 4, 'datareplace', 'index', 'init', '', 51, 1);
-INSERT INTO `hui_menu` VALUES (41, '执行替换', 40, 'datareplace', 'index', 'dosql', '', 1, 0);
+INSERT INTO `hui_menu` VALUES (40, '模块管理', 4, 'admin', 'module', 'init', '', 1, 1);
+INSERT INTO `hui_menu` VALUES (41, '模块安装', 40, 'admin', 'module', 'install', '', 1, 0);
+INSERT INTO `hui_menu` VALUES (42, '模块卸载', 40, 'admin', 'module', 'uninstall', '', 2, 0);
+INSERT INTO `hui_menu` VALUES (43, '数据库内容替换', 4, 'datareplace', 'index', 'init', '', 51, 1);
+INSERT INTO `hui_menu` VALUES (44, '执行替换', 43, 'datareplace', 'index', 'dosql', '', 1, 0);
 SET FOREIGN_KEY_CHECKS = 1;
