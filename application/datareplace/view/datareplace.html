@@ -1,0 +1,155 @@
+<?php include $this->admin_tpl('header','admin');?>
+<title>数据库内容批量替换</title>
+<style>
+    .layui-form-label{width: 12%;}
+    #fields a{margin-right: 8px;}
+
+</style>
+<body>
+<div class="weadmin-nav">
+    <span class="layui-breadcrumb">
+         <a href="">首页</a><span lay-separator="">/</span>
+        <a href="">模块管理</a><span lay-separator="">/</span>
+        <a><cite>数据库内容替换</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-sm" style="float:right;margin-top: 5px" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon">&#xe9aa;</i></a>
+</div>
+<div class="weadmin-body">
+    <blockquote class="layui-elem-quote ">
+        重要提示：<b style="color:#FF5722">程序用于批量替换数据库中某字段的内容，此操作极为危险，请小心使用。</b>
+    </blockquote>
+    <form class="layui-form" action="javascript:;" method="post">
+        <div class="layui-form-item">
+            <label  class="layui-form-label">
+                <span class="we-red">*</span>选择数据表与字段
+            </label>
+            <div class="layui-input-inline" style="width: 360px">
+                <select class="select" name="exptable" id="exptable" size="10" style="width:60%;height:120px" lay-filter="ShowFields">
+                    <option value="" selected>请选择</option>
+                    <?php
+                            foreach ($exptable_list as $v){
+                                echo '<option value="'.$v['Name'].'">'.$v['Name'].'</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="" style="width: 100%; max-width:1000px;height: auto;word-break: break-all;">
+                <div id="fields" style="">......</div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>要替换的字段
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" placeholder="" name="rpfield" id="rpfield" value="" class="layui-input" style="width:360px;">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="status" class="layui-form-label">替换方式</label>
+            <div class="layui-input-inline" id="status">
+                <input type="radio" name="ishtml5" type="radio" checked="checked" value="1" title="普通替换">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="we-red">*</span>替换的内容
+            </label>
+            <div class="layui-input-inline" style="width: 75%;">
+                <span class="span_input">
+                     <textarea  name="rpstring" id="rpstring" class="layui-textarea"  placeholder=""></textarea>
+                </span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">安全确认码：
+            </label>
+            <div class="layui-input-inline" style="width: 75%;">
+                <span class="span_input">
+                     <input type="text" name="code" id="code" value="" class="layui-input" required="required" placeholder="验证码" style="width: 140px;float:left"> &nbsp;
+                    <span style="color:#888" id="imgcode"><img src="<?php echo U('api/index/code');?> " border="0" class="verifyimg" onclick="this.src=this.src+'?'"/></span>
+
+                </span>
+            </div>
+        </div>
+
+        <input type="hidden" name="dosubmit" value="1">
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <button class="layui-btn"  lay-submit="" onclick="dosub()">&nbsp;开始替换数据&nbsp;</button>
+        </div>
+        
+    </form>
+
+</div>
+<?php include $this->admin_tpl('footer','admin');?>
+</body>
+</html>
+<script>
+    layui.use(['layer', 'jquery', 'form'], function () {
+        var layer = layui.layer,
+            $ = layui.jquery,
+            form = layui.form;
+        form.on('select(ShowFields)', function(data){
+            var exptable = $("#exptable").val();
+            $.ajax({
+                url:"",
+                type:"GET",
+                data:"exptable="+exptable+"&action=getfields",
+                success:function(result){
+                    var names=result.names;
+                    var html = "<div style=\"border:1px solid #ababab;background-color:#FEFFF0;margin-top:6px;padding:3px;line-height:160%\">表( "+exptable+" )含有的字段：<br>"+names;
+                    $("#fields").css("display","inline");
+                    $("#fields").html(html);
+                }}
+            );
+        });
+    });
+
+    function pf(v){
+        $('#rpfield').val(v);
+    }
+
+    function dosub() {
+        var rpstring = $("#rpstring").val();
+        var tostring = $("#tostring").val();
+        var rpfield = $("#rpfield").val();
+        if(rpfield==''){
+            layer.msg("你没有选择要替换的字段！",{icon:2});
+            return false;
+        }
+        if(rpstring==''){
+            layer.msg("你选择的操作为手工指定字段，但你并没指定！",{icon:2});
+            return false;
+        }
+        if(tostring==''){
+            layer.msg("你没指定要替换的字符串！",{icon:2});
+            return false;
+        }
+        $.post("<?php echo U('dosql'); ?>",{
+            code:$("#code").val(),
+            dosubmit:1,
+            rpfield:rpfield,
+            rpstring:rpstring,
+            tostring:tostring,
+            exptable:$("#exptable").val()
+        },function (res) {
+            if(res.status==0){
+                layer.msg(res.message,{icon:res.icon},function () {
+                    $("#code").val("");
+                    $("#imgcode").load(location.href+"#imgcode img");
+                });
+            }else if(res.status==201){
+                layer.msg(res.message);
+            }else{
+                layer.alert(res.message,{icon:res.icon},function () {
+                    window.location.reload();
+                });
+            }
+        })
+    }
+</script>
