@@ -651,3 +651,10 @@ pre {
 #page .page_right a:hover,#page .page_right  .curpage{background:#5a98de;color:#fff;text-decoration:none}
 #page .page_right .nopage{cursor:not-allowed;}
 #page .page_right .nopage:hover{background:#fff;color:#666;}
+
+div#focus_ovr {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: #000;z-index: -1;opacity: 0.1; visibility: visible;}
+#click_pic{width: 150px;height: 40px;  position: absolute; bottom: 5%;right:5%;z-index: 100}
+#click_pic a{width: 40px; height: 40px;float:left;display: block;}
+.click_pic{background: transparent url(../images/anniu.png) no-repeat;overflow: hidden;width: 40px;height: 40px;margin: 0 10px;}
+.click_pic_a{background-position: 0 -84px;}
+.click_pic_b{background-position: 0 -126px;}n
