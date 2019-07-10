@@ -190,6 +190,30 @@ INSERT INTO `hui_module` VALUES ('index', '前台模块', 1, '1.0', '前台模�
 INSERT INTO `hui_module` VALUES ('api', '接口模块', 1, '1.0', '为整个系统提供接口', '', 0, 0, '2019-01-27', '2019-01-27');
 INSERT INTO `hui_module` VALUES ('install', '安装模块', 1, '1.0', 'CMS安装模块', '', 0, 0, '2019-01-27', '2019-01-27');
 INSERT INTO `hui_module` VALUES ('datareplace', '数据库内容批量替换', 0, '1.0', '数据库内容批量替换', '', 0, 0, '2019-06-29', '2019-06-08');
+INSERT INTO `hui_module` VALUES ('attachment', '附件模块', 1, '1.0', '附件模块', '', 0, 0, '2019-07-10', '2019-07-10');
+
+
+-- ----------------------------
+-- Table structure for hui_attachment
+-- ----------------------------
+DROP TABLE IF EXISTS `hui_attachment`;
+CREATE TABLE `hui_attachment`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `module` char(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `originname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `filename` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `filepath` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `filesize` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `fileext` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `isimage` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `downloads` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `uploadtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `uploadip` char(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `userid_index`(`userid`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 
 -- ----------------------------
@@ -259,4 +283,5 @@ INSERT INTO `hui_menu` VALUES (41, '模块安装', 40, 'admin', 'module', 'insta
 INSERT INTO `hui_menu` VALUES (42, '模块卸载', 40, 'admin', 'module', 'uninstall', '', 2, 0);
 INSERT INTO `hui_menu` VALUES (43, '数据库内容替换', 4, 'datareplace', 'index', 'init', '', 51, 1);
 INSERT INTO `hui_menu` VALUES (44, '执行替换', 43, 'datareplace', 'index', 'dosql', '', 1, 0);
+INSERT INTO `hui_menu` VALUES (45, '内容管理', 1, 'admin', 'content', 'init', '', 1, 1);
 SET FOREIGN_KEY_CHECKS = 1;

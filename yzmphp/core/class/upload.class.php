@@ -37,7 +37,7 @@ class upload {
 			}
 			$this->setoption($key, $val);
 		}
-		$this->setoption('filepath', YZMPHP_PATH.C('upload_file').'/'.date('Ym/d'));
+		$this->setoption('filepath', YZMPHP_PATH.C('upload_file').'/'.date('Ym'));
 	}
 
 
@@ -219,8 +219,8 @@ class upload {
 		$arr = array(
 			'filesize' => $this->filesize,
 			'filetype' => $this->filetype,
-			'filepath' => SITE_PATH.C('upload_file').'/'.date('Ym/d/'),
-			'fileurl' => SITE_URL.C('upload_file').'/'.date('Ym/d/'),
+			'filepath' => SITE_PATH.C('upload_file').'/'.date('Ym/'),
+			'fileurl' => SITE_URL.C('upload_file').'/'.date('Ym/'),
 			'filename' => $this->newfilename,
 			'originname' => $this->originname,
 		);
@@ -234,7 +234,7 @@ class upload {
 	 */
 	public function getnewfilename($file_path = true){
 		if($file_path)
-			return SITE_URL.C('upload_file').'/'.date('Ym/d/').$this->newfilename;
+			return SITE_URL.C('upload_file').'/'.date('Ym/').$this->newfilename;
 		else
 			return $this->newfilename;
 	}

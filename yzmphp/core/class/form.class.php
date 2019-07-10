@@ -174,7 +174,7 @@ class form {
      */
     public static function cropper($cid, $spec=1) {
         $string='
-        <div class="layui-input-inline" style="width: 45%">
+        <div class="layui-input-inline" style="width: 35%">
             <button type="button" class="layui-btn" onclick="hui_img_cropper(\''.$cid.'\', \''.U('attachment/api/img_cropper', array('spec'=>$spec)).'\')" ><i class="layui-icon">&#xe663;</i>裁剪图片</button>
             </div>
             ';
