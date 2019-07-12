@@ -24,7 +24,7 @@ class admin_manage extends  common {
             $where='1=1';
                 $adminname=$getkey['adminname']?$getkey['adminname']:"";
                 $roles=$getkey['roles']?$getkey['roles']:"";
-                $status=$getkey['isuse']?$getkey['isuse']:"";
+            $status=$getkey['isuse']==''?'':$getkey['isuse'];
        
             if($adminname!=''){
                 $where.=" and adminname like '%$adminname%' ";
@@ -32,7 +32,7 @@ class admin_manage extends  common {
             if($roles!=''){
                 $where.=" and roleid=$roles ";
             }
-            if($status!=''){
+            if($status=='1' ||$status=='0'){
                 $where.=" and status =$status ";
             }
             $list = $DB_admin->where($where)->limit("$first,$limit")->order('adminid asc')->select();
