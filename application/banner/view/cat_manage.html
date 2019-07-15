@@ -1,0 +1,61 @@
+<?php include $this->admin_tpl('header', 'admin');?>
+<title>管理轮播分类 - YzmCMS内容管理系统</title>
+</head>
+<body>
+<div class="weadmin-body">
+<div class="formdoby_normal"> 
+	<form method="post" action="" id="myform" onsubmit="return checkall(this)">
+		<button class="layui-btn layui-btn-danger" name="dosubmit"  type="submit" > 批量删除</button>
+		<table class="layui-table">
+			<thead>
+			<tr>
+				<td>分类ID</td>
+				<td>分类名称</td>
+			</tr>
+			</thead>
+			<?php
+		foreach($data as $val){
+		?>
+			<tr>
+				<td><input type="checkbox" value="<?php echo $val['tid']?>" name="id[]"> <?php echo $val['tid']?></td>
+				<td><?php echo $val['name']?></td>
+			</tr>
+			<?php
+		}
+		?>
+		</table>
+	</form>
+</div>
+</div>
+<?php include $this->admin_tpl('footer','admin');?> 
+<script type="text/javascript">
+
+function checkall(obj){
+		if ($("input[name='id[]']:checked").length<1){
+		   layer.alert('请勾选信息！');
+		   return false;
+		}
+
+		layer.confirm('确认要删除吗？',function(index){
+			$.ajax({
+				type: 'POST',
+				url: '<?php echo U('cat_manage');?>', 
+				data: $(obj).serialize(),
+				dataType: "json", 
+				success: function (msg) {
+					if(msg.status == 1){
+						parent.location.reload();       
+					}else{
+						layer.msg(msg.message);
+					}
+				}
+			})
+		});
+		
+		 
+		return false;
+
+}
+</script>
+</body>
+</html>

@@ -54,7 +54,7 @@ class module_api {
 		if(is_array($model) && !empty($model)) {
 			$admin = D('admin');
 			foreach($model as $m) {
-				$admin->query('DROP TABLE IF EXISTS `yzmcms_'.$m.'`');
+				$admin->query('DROP TABLE IF EXISTS `hui_'.$m.'`');
 			}
 		}	
 		D('module')->delete(array('module' => $module));		
