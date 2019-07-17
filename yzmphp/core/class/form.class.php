@@ -149,7 +149,7 @@ class form {
      */
     public static function image($name, $val = '', $style = 'width:370px', $iscropper = false) {
         $string='
-            <div class="layui-input-inline" style="width: 30%">
+            <div class="layui-input-inline" style="width: 45%">
                 <input type="text" name="'.$name.'"  value="'.$val.'"  onmouseover="hui_img_preview(\''.$name.'\', this.value)" onmouseout="layer.closeAll();" id="'.$name.'"   autocomplete="off" class="layui-input">
             </div>
             <div class="layui-input-inline" style="width: 120px">
@@ -170,7 +170,7 @@ class form {
      */
     public static function cropper($cid, $spec=1) {
         $string='
-        <div class="layui-input-inline" style="width: 35%">
+        <div class="layui-input-inline" style="width: 45%">
             <button type="button" class="layui-btn" onclick="hui_img_cropper(\''.$cid.'\', \''.U('attachment/api/img_cropper', array('spec'=>$spec)).'\')" ><i class="layui-icon">&#xe663;</i>裁剪图片</button>
             </div>
             ';
@@ -213,8 +213,15 @@ class form {
      * @param $style 样式
      */
     public static function attachment($name, $val = '', $style='width:370px') {
-        $string = '<input class="input-text uploadfile" type="text" name="'.$name.'"  value="'.$val.'"  id="'.$name.'" style="'.$style.'" > <a href="javascript:;" onclick="yzm_upload_att(\''.U('attachment/api/upload_box', array('module'=>ROUTE_M, 'pid'=>$name, 't'=>2)).'\')" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>';
-        
+        $string = '
+        <div class="layui-input-inline" style="width: 45%">
+                <input type="text" name="'.$name.'"  value="'.$val.'"  id="'.$name.'"   autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline" style="width: 120px">
+                <button type="button" class="layui-btn" id="test3" onclick="hui_upload_att(\''.U('attachment/api/upload_box', array('module'=>ROUTE_M, 'pid'=>$name,'t'=>2)).'\')" ><i class="layui-icon">&#xe67c;</i>浏览文件</button>
+            </div>
+        </div>
+        ';
         return $string;
     }
     
