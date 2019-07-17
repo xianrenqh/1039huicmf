@@ -144,9 +144,7 @@ class system_manage extends common {
     public function public_gethtml($ftype='', $val='', $setting='') {
         debug();
         yzm_base::load_sys_class('form','',0);
-        
         $fieldtype = $ftype ? $ftype : (isset($_POST['fieldtype'])&&is_string($_POST['fieldtype']) ? safe_replace($_POST['fieldtype']) : 'textarea');
-        
         if($fieldtype == 'textarea'){
             echo '<textarea name="value" class="layui-textarea"  placeholder="例如：214243830">'.$val.'</textarea>';
         }elseif(in_array($fieldtype, array('select', 'radio'))){
@@ -156,7 +154,7 @@ class system_manage extends common {
                 echo '<textarea name="setting" class="layui-textarea"  placeholder="选项用“|”分开，如“男|女|人妖”"></textarea> &nbsp;<input type="text" name="value" class="layui-input" style="width:180px" placeholder="默认值用配置值填写">';
             }
         }elseif($fieldtype == 'image' || $fieldtype == 'attachment'){
-            echo '<div class="layui-input-inline" style="width: 70%"><input type="text" name="value" value=""  id="value" autocomplete="off" class="layui-input"></div> &nbsp;<button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>上传文件</button>';
+            echo form::image('thumb', '', 'width:370px', true);
         }else{
             echo '<textarea name="value" class="layui-textarea"  placeholder="例如：214243830">'.$val.'</textarea>';
         }

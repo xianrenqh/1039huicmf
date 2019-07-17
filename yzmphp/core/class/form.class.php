@@ -149,16 +149,12 @@ class form {
      */
     public static function image($name, $val = '', $style = 'width:370px', $iscropper = false) {
         $string='
-        
-            <label for="adminname" class="layui-form-label">缩 略 图：</label>
             <div class="layui-input-inline" style="width: 30%">
                 <input type="text" name="'.$name.'"  value="'.$val.'"  onmouseover="hui_img_preview(\''.$name.'\', this.value)" onmouseout="layer.closeAll();" id="'.$name.'"   autocomplete="off" class="layui-input">
             </div>
             <div class="layui-input-inline" style="width: 120px">
                 <button type="button" class="layui-btn" id="test3" onclick="hui_upload_att(\''.U('attachment/api/upload_box', array('module'=>ROUTE_M, 'pid'=>$name)).'\')" ><i class="layui-icon">&#xe67c;</i>浏览文件</button>
             </div>
-           
-        
         ';
         //$string = '<input class="layui-input uploadfile" type="text" name="'.$name.'"  value="'.$val.'"  onmouseover="yzm_img_preview(\''.$name.'\', this.value)" onmouseout="layer.closeAll();" id="'.$name.'" style="'.$style.'" > <a href="javascript:;" onclick="yzm_upload_att(\''.U('attachment/api/upload_box', array('module'=>ROUTE_M, 'pid'=>$name)).'\')" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>';
         
