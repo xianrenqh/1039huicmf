@@ -51,7 +51,7 @@
 <script type="text/javascript" src="<?php echo STATIC_URL;?>plugin/uploadify/3.2.1/jquery.uploadifive.min.js"></script>
 <script type="text/javascript">
 $(function(){
-    if(<?php echo isset($_GET['tab'])?>){
+    if("<?php echo isset($_GET['tab'])?>"){
         $(".layui-tab-brief").find('li').eq(0).removeClass("layui-this");
         $(".layui-tab-brief").find('li').eq(1).addClass("layui-this");
         $(".layui-tab-content").find('.layui-tab-item').eq(0).removeClass("layui-show");
