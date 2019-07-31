@@ -12,8 +12,8 @@ class banner extends common {
 	public function init() {
 		$banner = D('banner');
 		$total = $banner->total();
-		$page = new page($total, 5);
-		$data = $banner->order('listorder ASC,id DESC')->limit($page->limit())->select();		
+        $page = new page($total, 10);
+        $data = $banner->order('typeid ASC,listorder ASC,id DESC')->limit($page->limit())->select();
 		include $this->admin_tpl('banner_list');
 	}	
 
