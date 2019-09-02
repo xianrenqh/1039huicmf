@@ -154,7 +154,7 @@ class system_manage extends common {
                 echo '<textarea name="setting" class="layui-textarea"  placeholder="选项用“|”分开，如“男|女|人妖”"></textarea> &nbsp;<input type="text" name="value" class="layui-input" style="width:180px" placeholder="默认值用配置值填写">';
             }
         }elseif($fieldtype == 'image' || $fieldtype == 'attachment'){
-            echo form::image('thumb', '', 'width:370px', true);
+            echo form::$fieldtype('value', $val);
         }else{
             echo '<textarea name="value" class="layui-textarea"  placeholder="例如：214243830">'.$val.'</textarea>';
         }
