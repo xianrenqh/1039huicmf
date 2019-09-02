@@ -67,6 +67,10 @@ class system_manage extends common {
             $config = D('config');
             $res = $config->where(array('name' => $_POST['name']))->find();
             if($res) return_json(array('status'=>0,'message'=>'配置名称已存在！'));
+            
+            if ($_POST['fieldtype'=='attachment'] || $_POST['fieldtype'=='image']){
+                $_POST['value']=$_POST['image'];
+            }
             if(empty($_POST['value']))  return_json(array('status'=>0,'message'=>'配置值不能为空！'));
             
             $_POST['type'] = 99;
