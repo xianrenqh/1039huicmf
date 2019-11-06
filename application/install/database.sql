@@ -142,7 +142,7 @@ CREATE TABLE `hui_config`  (
 -- ----------------------------
 INSERT INTO `hui_config` VALUES (1, 'site_name', 1, '站点名称', 'HuiCmf - 演示站', '', '', 1);
 INSERT INTO `hui_config` VALUES (2, 'site_url', 1, '站点跟网址', 'http://localhost:1041/', '', '', 1);
-INSERT INTO `hui_config` VALUES (3, 'admin_log', 3, '启用后台管理操作日志', '1', '', '', 1);
+INSERT INTO `hui_config` VALUES (3, 'admin_log', 3, '启用后台管理操作日志', '0', '', '', 1);
 INSERT INTO `hui_config` VALUES (4, 'site_keyword', 1, '站点关键字', '错误日志', '', '', 1);
 INSERT INTO `hui_config` VALUES (5, 'site_copyright', 1, '网站版权信息', 'Powered By HuiCMF内容管理系统 © 2018-2019 小灰灰工作室', '', '', 1);
 INSERT INTO `hui_config` VALUES (6, 'site_beian', 1, '站点备案号', '京ICP备666666号', '', '', 1);
@@ -158,7 +158,7 @@ INSERT INTO `hui_config` VALUES (15, 'mail_inbox', 4, '收件邮箱地址', '', 
 INSERT INTO `hui_config` VALUES (16, 'mail_auth', 4, 'AUTH LOGIN验证', '1', '', '', 1);
 INSERT INTO `hui_config` VALUES (17, 'login_code', 3, '后台登录验证码','1', '', '', 1);
 INSERT INTO `hui_config` VALUES (18,'upload_maxsize', 2, '允许上传附件大小','2048', '', '', 1);
-INSERT INTO `hui_config` VALUES (19,'watermark_enable', 2, '是否开启图片水印','1', '', '', 1);
+INSERT INTO `hui_config` VALUES (19,'watermark_enable', 2, '是否开启图片水印','0', '', '', 1);
 INSERT INTO `hui_config` VALUES (20,'watermark_name', 2, '水印图片名称','mark.png', '', '', 1);
 INSERT INTO `hui_config` VALUES (21,'watermark_position', 2, '水印的位置','9', '', '', 1);
 

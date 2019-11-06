@@ -1,0 +1,14 @@
+<?php include $this->admin_tpl('header');?>
+<body>
+<div class="weadmin-body">
+    <form class="layui-form" action="javascript:;" onsubmit="return dosub(this)">
+        <div class="layui-form-item">
+            <label class="layui-form-label">缩 略 图：</label>
+            <?php echo form::image('thumb', '', 'width:370px', true);?><img src="<?php echo STATIC_URL;?>images/nopic.jpg" class="thumb" id="thumb_src">
+        </div>
+    </form>
+</div>
+
+<?php include $this->admin_tpl('footer');?>
+</body>
+</html>
