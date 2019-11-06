@@ -215,6 +215,24 @@ CREATE TABLE `hui_attachment`  (
   INDEX `userid_index`(`userid`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Table structure for hui_content
+-- ----------------------------
+DROP TABLE IF EXISTS `hui_content`;
+CREATE TABLE IF NOT EXISTS `hui_content` (
+  `id` smallint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) NOT NULL,
+  `userid` varchar(10) NOT NULL,
+  `title` varchar(180) NOT NULL,
+  `inputtime` int(10) NOT NULL,
+  `updatetime` int(10) NOT NULL,
+  `keywords` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `status` int(1) NOT NULL,
+  `collect` int(1) NOT NULL,
+    PRIMARY KEY (`id`) USING BTREE,
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for hui_menu
@@ -284,4 +302,7 @@ INSERT INTO `hui_menu` VALUES (42, '模块卸载', 40, 'admin', 'module', 'unins
 INSERT INTO `hui_menu` VALUES (43, '数据库内容替换', 4, 'datareplace', 'index', 'init', '', 51, 1);
 INSERT INTO `hui_menu` VALUES (44, '执行替换', 43, 'datareplace', 'index', 'dosql', '', 1, 0);
 INSERT INTO `hui_menu` VALUES (45, '内容管理', 1, 'admin', 'content', 'init', '', 1, 1);
+INSERT INTO `hui_menu` VALUES (46, '添加内容', 1, 'admin', 'content', 'add', '', 45, 0);
+INSERT INTO `hui_menu` VALUES (47, '编辑内容', 1, 'admin', 'content', 'edit', '', 45, 0);
+INSERT INTO `hui_menu` VALUES (48, '删除一条内容', 1, 'admin', 'content', 'del_one', '', 45, 0);
 SET FOREIGN_KEY_CHECKS = 1;

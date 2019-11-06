@@ -1,14 +1,78 @@
 <?php include $this->admin_tpl('header');?>
+<style>
+    .layui-breadcrumb {visibility: visible;}
+</style>
 <body>
+<div class="weadmin-nav">
+			<span class="layui-breadcrumb">
+       		 <a href="">首页</a><span lay-separator="">/</span>
+        	<a href="">内容管理</a><span lay-separator="">/</span>
+            <a><cite>内容列表</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-sm" style="float:right;margin-top: 5px" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#xe9aa;</i></a>
+</div>
+
 <div class="weadmin-body">
-    <form class="layui-form" action="javascript:;" onsubmit="return dosub(this)">
-        <div class="layui-form-item">
-            <label class="layui-form-label">缩 略 图：</label>
-            <?php echo form::image('thumb', '', 'width:370px', true);?><img src="<?php echo STATIC_URL;?>images/nopic.jpg" class="thumb" id="thumb_src">
-        </div>
-    </form>
+    <div class="weadmin-block">
+        <button class="layui-btn" onclick="WeAdminShow('添加内容','<?php echo U('content/add')?>')"><i class="layui-icon"></i>添加</button>
+        <span class="fr" style="line-height:40px;padding-right: 10px;">共有数据：<span  id="total"><?php echo $total;?></span> 条</span>
+    </div>
+    <table id="role_list" lay-filter="role_list"></table>
+    <script type="text/html" id="status">
+        {{#  if(d.status ==1){ }}
+        <span class="layui-btn layui-btn-sm" onclick="change_s({{d.id}})">正&emsp;常</span>
+        {{#  } else { }}
+        <span class="layui-btn layui-btn-danger layui-btn-sm" onclick="change_s({{d.id}})">未发布</span>
+        {{#  } }}
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+    </script>
 </div>
 
 <?php include $this->admin_tpl('footer');?>
 </body>
 </html>
+<script>
+    layui.use('table', function() {
+        var table = layui.table;
+        //第一个实例
+        table.render({
+            elem: '#role_list'
+            , page: false
+            , where: {do: 1}
+            , method: 'post'
+            , url: '<?php echo U('init');?>' //数据接口
+            , done: function (res) { //res 即为原始返回的数据
+                $("#total").html(res.count);
+            }
+            , cols: [[ //表头
+                {type: 'numbers', fixed: 'left',align:'center'}
+                ,{field: 'id', title: 'ID', width:100, sort: true,align:'center'}
+                , {field: 'title', title: '标题',width:'50%'}
+                , {field: 'catid', title: '内容分类'}
+                , {field: 'inputtime', title: '添加时间',sort: true}
+                , {field: 'status', title: '状态', sort: true, templet: '#status', align: 'center'}
+                , {fixed: 'right', title: '操作', toolbar: '#barDemo', align: 'center'}
+            ]]
+            , id: 'testReload'
+            , page: true
+            , limit: 10
+        });
+        //监听行工具事件
+        table.on('tool(role_list)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                WeAdminDel("<?php echo U('del_one')?>?id="+data.id);
+            } else if(obj.event === 'edit'){
+                var roleid =
+                    WeAdminShow("编辑","<?php echo U('edit')?>?id="+data.id,'1000');
+            }
+        });
+    });
+    function change_s(id) {
+        alert(id);
+    }
+</script>
