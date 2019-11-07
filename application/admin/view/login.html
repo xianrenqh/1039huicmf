@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="<?php echo STATIC_URL;?>lib/jquery/jquery.2.2.4.min.js"></script>
 	<script src="<?php echo STATIC_URL;?>js/clicaptcha.js"></script>
 </head>
-<body class="login-bg" style="background: url(/getbingpic.php?idx=0)">
+<body class="login-bg" style="background: url(<?php echo U('api/index/getbing_bgpic');?>)">
 <div class="login">
 	<div class="message">小灰灰内容管理系统-后台管理系统</div>
 	<div id="darkbannerwrap"></div>
@@ -50,5 +50,5 @@
 </body>
 </html>
 <script>
-	$(function(){$("#sub").click(function(){$("#clicaptcha-submit-info").clicaptcha({src:"<?php echo U('api/index/code_captcha');?>",callback:function(){$("#form").submit()}})});var i=0;$(".click_pic_a").click(function(){i+=1;if(i<=7){$(".login-bg").css({"background":"url(/getbingpic.php?idx="+i+")","transition":"500ms ease 500ms","-webkit-transition":"500ms ease 500ms"});$(".click_pic_a").css("opacity","1")}else{i=7;alert('没有了哦')}});$(".click_pic_b").click(function(){i-=1;if(i>=0){$(".login-bg").css({"background":"url(/getbingpic.php?idx="+i+")","transition":"500ms ease 500ms","-webkit-transition":"500ms ease 500ms"});$(".click_pic_b").css("opacity","1")}else{i=0;alert('没有了哦');}})});
+	$(function(){$("#sub").click(function(){$("#clicaptcha-submit-info").clicaptcha({src:"<?php echo U('api/index/code_captcha');?>",callback:function(){$("#form").submit()}})});var i=0;$(".click_pic_a").click(function(){i+=1;if(i<=7){$(".login-bg").css({"background":"url(<?php echo U('api/index/getbing_bgpic');?>?idx="+i+")","transition":"500ms ease 500ms","-webkit-transition":"500ms ease 500ms"});$(".click_pic_a").css("opacity","1")}else{i=7;alert("没有了")}});$(".click_pic_b").click(function(){i-=1;if(i>=0){$(".login-bg").css({"background":"url(<?php echo U('api/index/getbing_bgpic');?>?idx="+i+")","transition":"500ms ease 500ms","-webkit-transition":"500ms ease 500ms"});$(".click_pic_b").css("opacity","1")}else{i=0;alert("没有了");}})});
 </script>
