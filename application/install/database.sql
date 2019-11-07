@@ -219,20 +219,22 @@ CREATE TABLE `hui_attachment`  (
 -- Table structure for hui_content
 -- ----------------------------
 DROP TABLE IF EXISTS `hui_content`;
-CREATE TABLE IF NOT EXISTS `hui_content` (
-  `id` smallint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) NOT NULL,
-  `userid` varchar(10) NOT NULL,
-  `title` varchar(180) NOT NULL,
-  `inputtime` int(10) NOT NULL,
-  `updatetime` int(10) NOT NULL,
-  `keywords` varchar(100) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `collect` int(1) NOT NULL,
-    PRIMARY KEY (`id`) USING BTREE,
-) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+CREATE TABLE `hui_content`  (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `catid` smallint(6) NOT NULL DEFAULT 0,
+  `userid` smallint(10) NOT NULL DEFAULT 0,
+  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '配置说明',
+  `inputtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `updatetime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `keywords` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `setting` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `status` smallint(1) NOT NULL DEFAULT 0,
+  `collect` smallint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+
 
 -- ----------------------------
 -- Table structure for hui_menu
