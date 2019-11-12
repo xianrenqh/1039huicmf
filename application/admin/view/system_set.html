@@ -155,6 +155,13 @@
                         </div>
                         <div class="layui-input-inline" style="width: 50%" >[最大限制不能超过服务器“upload_max_filesize”配置]</div>
                     </div>
+                    <div class="layui-form-item " >
+                        <label for="mail_port" class="layui-form-label">允许上传附件类型：</label>
+                        <div class="layui-input-inline" >
+                            <input type="text" id="upload_types" name="upload_types" value="<?php echo $data['upload_types']?>"  autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline" style="width: 50%" >[多个类型直接用“|”分开]</div>
+                    </div>
                     <div class="layui-form-item">
                         <label  class="layui-form-label">是否开启图片水印：</label>
                         <div class="layui-input-inline">
