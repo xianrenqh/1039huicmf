@@ -1,4 +1,4 @@
-# HuiCMF
+# HuiCMF v1.0
 
 #### 介绍
 小灰灰cmf,huicmf，  使用yzmphp二次开发的带后台权限功能的后台。
